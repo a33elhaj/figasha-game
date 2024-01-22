@@ -5,7 +5,7 @@ import { Directive, EventEmitter, OnInit, Output } from '@angular/core';
   selector: '[appRandomNumber]'
 })
 export class RandomNumberDirective implements OnInit {
-  #generatedNumber:string = "";
+  #generatedNumber: string = "";
 
   @Output()
   numberGenerated = new EventEmitter<string>();
@@ -16,9 +16,27 @@ export class RandomNumberDirective implements OnInit {
 
   generateNumber(): void {
     this.#generatedNumber = "";
-    this.#generatedNumber = this.#generatedNumber+""+this.generateSingleDigit();
-    this.#generatedNumber = this.#generatedNumber+""+this.generateSingleDigit();
-    this.#generatedNumber = this.#generatedNumber+""+this.generateSingleDigit();
+
+    let rn1: number = this.generateSingleDigit();
+    let rn2: number = this.generateSingleDigit();
+    let rn3: number = this.generateSingleDigit();
+
+    while (rn2 == rn1) {
+      rn2 = this.generateSingleDigit();
+      if (rn2 != rn1)
+        break;
+
+    }
+
+    while (rn3 == rn1 || rn3 == rn2) {
+      rn3 = this.generateSingleDigit();
+      if (rn3 != rn1 && rn3 != rn2)
+        break;
+    }
+
+    this.#generatedNumber = this.#generatedNumber + "" + rn1;
+    this.#generatedNumber = this.#generatedNumber + "" + rn2;
+    this.#generatedNumber = this.#generatedNumber + "" + rn3;
     this.numberGenerated.emit(this.#generatedNumber);
   }
 
