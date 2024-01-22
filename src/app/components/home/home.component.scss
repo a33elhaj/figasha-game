@@ -1,0 +1,19 @@
+.homeWapper{
+  background-color: #07083E;
+  height: 700px;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+form{
+  text-align: center;
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+

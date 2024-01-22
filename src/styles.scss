@@ -1,1 +1,102 @@
-/* You can add global styles to this file, and also import other style files */
+/* variables */
+:root {
+  --primary: #FFC636;
+  --secondary: #0A0B5B;
+}
+
+/* reset */
+body,
+p,
+a,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* base styles */
+body {
+  background-color: #0A0B5B;
+  overflow-x: hidden;
+  font-family: 'Rubik Regular';
+}
+
+.button {
+  background: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  font-size: 1em;
+}
+
+.button:hover {
+  color: #222;
+  background: var(--primary);
+}
+
+input,
+textarea {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px 16px;
+  border-radius: 20px;
+  border: 2px solid #9893D8;
+  color: #f2f2f2;
+  font-size: 1em;
+}
+
+/* fonts */
+@font-face {
+  font-family: 'Rubik Regular';
+  src: url("assets/fonts/Rubik-Regular.ttf") format("ttf"),
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #DDDBFF;
+  font-weight: normal;
+  line-height: 1.4em;
+}
+
+p,
+a,
+li {
+  color: #9893D8;
+  line-height: 1.4em;
+  font-size: 1em;
+}
+
+h1,
+h3 {
+  font-size: 1.2em;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h4 {
+  font-size: 1.1em;
+}
+
+.leading {
+  font-size: 1.1em;
+}
+
+/* mobile styles */
+
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
