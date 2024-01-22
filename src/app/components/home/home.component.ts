@@ -29,7 +29,7 @@ export class HomeComponent {
     tDigit: 0,
   }
 
-  resetResultVariable(){
+  resetResultVariable() {
     this.result.fResult = "";
     this.result.sResult = "";
     this.result.tResult = "";
@@ -58,38 +58,47 @@ export class HomeComponent {
     this.resetResultVariable();
 
     // chek first digit
-    if(this.rNumber.fDigit == this.gNumber.fDigit){
+    if (this.gNumber.fDigit == this.rNumber.fDigit) {
       this.result.fResult = "=";
-    }else if(this.rNumber.fDigit == this.gNumber.sDigit){
+    } else if (this.gNumber.fDigit == this.rNumber.sDigit) {
       this.result.fResult = "O";
-    }else if(this.rNumber.fDigit == this.gNumber.tDigit){
+    } else if (this.gNumber.fDigit == this.rNumber.tDigit) {
       this.result.fResult = "O";
-    }else{
+    } else {
       this.result.fResult = "X";
     }
-    console.log(this.result.fResult);
-    
+    console.log("r num: " + this.rNumber.fDigit);
+    console.log("g num: " + this.gNumber.fDigit);
+    console.log("result 1: " + this.result.fResult);
+
     // chek second digit
-    if(this.rNumber.sDigit == this.gNumber.sDigit){
-      this.result.fResult = "=";
-    }else if(this.rNumber.sDigit == this.gNumber.fDigit){
-      this.result.fResult = "O";
-    }else if(this.rNumber.sDigit == this.gNumber.tDigit){
-      this.result.fResult = "O";
-    }else{
-      this.result.fResult = "X";
+    if (this.gNumber.sDigit == this.rNumber.sDigit) {
+      this.result.sResult = "=";
+    } else if (this.gNumber.sDigit == this.rNumber.fDigit) {
+      this.result.sResult = "O";
+    } else if (this.gNumber.sDigit == this.rNumber.tDigit) {
+      this.result.sResult = "O";
+    } else {
+      this.result.sResult = "X";
     }
+    console.log("r num: " + this.rNumber.sDigit);
+    console.log("g num: " + this.gNumber.sDigit);
+    console.log("result 1: " + this.result.sResult);
 
     // chek third digit
-    if(this.rNumber.tDigit == this.gNumber.tDigit){
-      this.result.fResult = "=";
-    }else if(this.rNumber.tDigit == this.gNumber.fDigit){
-      this.result.fResult = "O";
-    }else if(this.rNumber.tDigit == this.gNumber.sDigit){
-      this.result.fResult = "O";
-    }else{
-      this.result.fResult = "X";
+    if (this.gNumber.tDigit == this.rNumber.tDigit) {
+      this.result.tResult = "=";
+    } else if (this.gNumber.tDigit == this.rNumber.fDigit) {
+      this.result.tResult = "O";
+    } else if (this.gNumber.tDigit == this.rNumber.sDigit) {
+      this.result.tResult = "O";
+    } else {
+      this.result.tResult = "X";
     }
+    console.log("r num: " + this.rNumber.tDigit);
+    console.log("g num: " + this.gNumber.tDigit);
+    console.log("result 1: " + this.result.tResult);
+
 
   }
 
