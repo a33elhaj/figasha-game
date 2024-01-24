@@ -1,30 +1,24 @@
-
-
 <div class="homeWapper">
   <ng-container #generator="appRandomNumber" appRandomNumber
-  (numberGenerated)="onNumberGenerated($event)"
-></ng-container>
+    (numberGenerated)="onNumberGenerated($event)"></ng-container>
 
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Random number generator</mat-card-title>
-  </mat-card-header>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Random number generator</mat-card-title>
+    </mat-card-header>
 
-  <mat-card-content>
-    <p>
-      Your random number is {{ generatedNumber }}
-    </p>
-  </mat-card-content>
+    <mat-card-content>
+      <p>
+        Your random number is {{ generatedNumber }}
+      </p>
+    </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-button
-      (click)="generator.generateNumber()"
-    >
-      GENERATE
-    </button>
-  </mat-card-actions>
-</mat-card>
-
+    <mat-card-actions>
+      <button mat-button (click)="generator.generateNumber()">
+        GENERATE
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
 
   <form>
@@ -32,7 +26,7 @@
       <p>Guess the Number</p>
       <!-- <input type="text" [value]="guessedNumber"> -->
       <input type="text" class="form-control" id="name" required [(ngModel)]="guessedNumber" name="gnumber"
-        #gnumber="ngModel">
+        #gnumber="ngModel" placeholder="enter three digits">
 
       <div style="color: blanchedalmond;" [hidden]="gnumber.valid || gnumber.pristine" class="alert alert-danger">
         three digits number is required
@@ -43,10 +37,22 @@
   </form>
   <div class="trck-result">
     <p>step up result:</p>
-    <p>{{"your number is:"+ guessedNumber}}</p>
-  <p>{{"rNum 1: "+rNumber.fDigit+" - gNum 1:"+gNumber.fDigit+" - result 1: "+ result.fResult}}</p>
-  <p>{{"rNum 2: "+rNumber.sDigit+" - gNum 2:"+gNumber.sDigit+" - result 2: "+ result.sResult}}</p>
-  <p>{{"rNum 3: "+rNumber.tDigit+" - gNum 3:"+gNumber.tDigit+" - result 3: "+ result.tResult}}</p>
+
+    <!-- <p>{{allguessedNumbers | json}}</p>
+    <p>{{allResults | json}}</p> -->
+
+    <div *ngIf="hdrObject?.length">
+
+      <ng-container *ngFor="let obj of hdrObject;">
+        <tr>
+          <p>{{obj.guesseArr.fDigit+" "+obj.guesseArr.sDigit+" "+obj.guesseArr.tDigit}}</p>
+          <p>{{obj.resultArr.fDigitResult+" "+obj.resultArr.sDigitResult+" "+obj.resultArr.tDigitResult}}</p>
+        </tr>
+      </ng-container>
+
+    </div>
+
+
   </div>
 
 </div>

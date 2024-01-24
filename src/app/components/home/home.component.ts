@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Result } from 'src/app/utiltes/result-code';
+import { ThreeDigits } from 'src/app/utiltes/three-digits';
 
 @Component({
   selector: 'app-home',
@@ -9,96 +11,88 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class HomeComponent {
 
   generatedNumber: string = "";
-  rNumber = {
-    fDigit: 0,
-    sDigit: 0,
-    tDigit: 0,
-  }
 
-  result = {
-    fResult: "X",
-    sResult: "X",
-    tResult: "X",
-  }
+  allResults?: Result[];
 
-  guessed = false;
   guessedNumber: string = "";
-  gNumber = {
-    fDigit: 0,
-    sDigit: 0,
-    tDigit: 0,
-  }
 
-  resetResultVariable() {
-    this.result.fResult = "";
-    this.result.sResult = "";
-    this.result.tResult = "";
+  allguessedNumbers?: ThreeDigits[] ;
+
+  hdrObject =[{
+    guesseArr: new ThreeDigits(0, 0, 0),
+    resultArr: new Result("X", "X", "X")
+  }];
+
+  resetAllResultVariable() {
+    this.hdrObject = [];
+    this.allResults = [];
+    this.allguessedNumbers = [];
   }
 
   onNumberGenerated(generatedNumber: string): void {
 
     // this.generatedNumber = "";
     this.generatedNumber = generatedNumber;
+    this.resetAllResultVariable();
 
   }//enf of method
 
   onSubmit(): void {
     let arr: Array<string> = this.guessedNumber.split("");
-    // console.log(arr);
-    this.gNumber.fDigit = parseInt(arr[0]);
-    this.gNumber.sDigit = parseInt(arr[1]);
-    this.gNumber.tDigit = parseInt(arr[2]);
+    let gn1 = parseInt(arr[0]);
+    let gn2 = parseInt(arr[1]);
+    let gn3 = parseInt(arr[2]);
+
+    this.allguessedNumbers?.push(new ThreeDigits(gn1, gn2, gn3));
 
     let arr2: Array<string> = this.generatedNumber.split("");
-    this.rNumber.fDigit = parseInt(arr2[0]);
-    this.rNumber.sDigit = parseInt(arr2[1]);
-    this.rNumber.tDigit = parseInt(arr2[2]);
+    let rn1 = parseInt(arr2[0]);
+    let rn2 = parseInt(arr2[1]);
+    let rn3 = parseInt(arr2[2]);
 
-    //reset result values
-    this.resetResultVariable();
+    let rCode1;
+    let rCode2;
+    let rCode3;
 
     // chek first digit
-    if (this.gNumber.fDigit == this.rNumber.fDigit) {
-      this.result.fResult = "=";
-    } else if (this.gNumber.fDigit == this.rNumber.sDigit) {
-      this.result.fResult = "O";
-    } else if (this.gNumber.fDigit == this.rNumber.tDigit) {
-      this.result.fResult = "O";
+    if (gn1 == rn1) {
+      rCode1 = "=";
+    } else if (gn1 == rn2) {
+      rCode1 = "O";
+    } else if (gn1 == rn3) {
+      rCode1 = "O";
     } else {
-      this.result.fResult = "X";
+      rCode1 = "X";
     }
-    console.log("r num: " + this.rNumber.fDigit);
-    console.log("g num: " + this.gNumber.fDigit);
-    console.log("result 1: " + this.result.fResult);
 
     // chek second digit
-    if (this.gNumber.sDigit == this.rNumber.sDigit) {
-      this.result.sResult = "=";
-    } else if (this.gNumber.sDigit == this.rNumber.fDigit) {
-      this.result.sResult = "O";
-    } else if (this.gNumber.sDigit == this.rNumber.tDigit) {
-      this.result.sResult = "O";
+    if (gn2 == rn2) {
+      rCode2 = "=";
+    } else if (gn2 == rn1) {
+      rCode2 = "O";
+    } else if (gn2 == rn3) {
+      rCode2 = "O";
     } else {
-      this.result.sResult = "X";
+      rCode2 = "X";
     }
-    console.log("r num: " + this.rNumber.sDigit);
-    console.log("g num: " + this.gNumber.sDigit);
-    console.log("result 1: " + this.result.sResult);
 
     // chek third digit
-    if (this.gNumber.tDigit == this.rNumber.tDigit) {
-      this.result.tResult = "=";
-    } else if (this.gNumber.tDigit == this.rNumber.fDigit) {
-      this.result.tResult = "O";
-    } else if (this.gNumber.tDigit == this.rNumber.sDigit) {
-      this.result.tResult = "O";
+    if (gn3 == rn3) {
+      rCode3 = "=";
+    } else if (gn3 == rn1) {
+      rCode3 = "O";
+    } else if (gn3 == rn2) {
+      rCode3 = "O";
     } else {
-      this.result.tResult = "X";
+      rCode3 = "X";
     }
-    console.log("r num: " + this.rNumber.tDigit);
-    console.log("g num: " + this.gNumber.tDigit);
-    console.log("result 1: " + this.result.tResult);
 
+    this.allResults?.push(new Result(rCode1, rCode2, rCode3));
+
+    this.hdrObject.push({
+      guesseArr: new ThreeDigits(gn1, gn2, gn3),
+      resultArr: new Result(rCode1, rCode2, rCode3),
+    });
 
   }
 
